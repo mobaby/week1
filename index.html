@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- <link rel="stylesheet" href="fonts/iconfont.css"> -->
+</head>
+<script>
+    document.documentElement.style.fontSize = window.innerWidth / 375 * 50 + 'px';
+</script>
+
+<body ng-controller="main">
+    <div class="wrap">
+        <header>
+            <span></span>
+            <h3>{{msg}}</h3>
+            <i class="iconfont"></i>
+        </header>
+        <section>
+            <!-- <ul ng-repeat="value in data">
+                <li>
+                    <img src="{{value.img}}" alt="">
+                    <h3>{{value.title}}</h3>
+                    <h4>{{value.area}}</h4>
+                    <h5>{{value.web}}</h5>
+                    <span>{{value.num}</span>
+                </li>
+            </ul> -->
+            <ul>
+
+                <li>
+                    <img src="images/1.png" alt="">
+                    <h3>百度</h3>
+                    <h4>北京市海淀区西北旺</h4>
+                    <h5>互联网</h5>
+                    <span>热招前端工程师等2382个职位</span>
+                </li>
+                <li>
+                    <img src="images/1.png" alt="">
+                    <h3>百度</h3>
+                    <h4>北京市海淀区西北旺</h4>
+                    <h5>互联网</h5>
+                    <span>热招前端工程师等2382个职位</span>
+                </li>
+            </ul>
+        </section>
+        <footer></footer>
+    </div>
+    <script src="angular.js"></script>
+    <script>
+        angular.module('app', [])
+            .controller('main', ['$scope', '$http', function($scope, $http) {
+                $scope.msg = '公司';
+                $http({
+                        url: 'http://localhost:8080/list',
+                        method: 'POST'
+                    })
+                    .then(function(result) {
+                        $scope.data = result.data;
+                        console.log(result.data);
+                    }, function(error) {
+                        console.log(error);
+                    })
+            }])
+    </script>
+</body>
+
+</html>
